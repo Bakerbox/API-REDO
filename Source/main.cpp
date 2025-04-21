@@ -14,11 +14,8 @@ int main()
         while (!WindowShouldClose())
         {
             game.Update();
-            
-            BeginDrawing(); //TODO: considermoving into game::render, since it 100% dependent on these calls happening in the right order
-            ClearBackground(BLACK);
             game.Render();
-            EndDrawing();
+
         }
         
         CloseWindow();

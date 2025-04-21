@@ -340,6 +340,8 @@ void Game::RenderLeaderboardScreen() const {
 }
 
 void Game::Render() const {
+    BeginDrawing();
+    ClearBackground(BLACK);
     switch (gameState) {
     case State::STARTSCREEN:
         DrawText("SPACE INVADERS", 200, 100, 160, YELLOW);
@@ -380,6 +382,7 @@ void Game::Render() const {
         }
         break;
     }
+    EndDrawing();
 }
 
 void Game::SpawnAliens() {
