@@ -32,7 +32,7 @@ Game::Game(State initialState)
       offset(0),
       textBox{600, 500, 225, 50},
       resources(std::make_unique<Resources>()),
-      background(std::make_unique<Background>(600))
+      background(600)
 {
     unsigned seed = static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());
     rng.seed(seed);
@@ -176,7 +176,7 @@ void Game::SpawnNewAliensIfNecessary() {
 void Game::UpdateBackground() {
     cornerPos = {0, player->GetPlayerBaseHeight()};
     offset = lineLength(player->GetPosition(), cornerPos) * -1;
-    background->Update(offset / 15);
+    background.Update(offset / 15);
 }
 
 void Game::HandleShooting() {
@@ -246,7 +246,7 @@ void Game::HandleHighScoreEntry() {
         framesCounter = 0;
     }
 
-    if (letterCount > 0 && letterCount < MAX_NAME_LENGTH && IsKeyReleased(KEY_ENTER)) {
+    if (playerName.size() > 0 && IsKeyReleased(KEY_ENTER)) {
         InsertNewHighScore(playerName);
         newHighScore = false;
     }
@@ -257,16 +257,14 @@ void Game::HandleNameInput() {
     int key = GetCharPressed();
 
     while (key > 0) {
-        if ((key >= 32) && (key <= 125) && (letterCount < MAX_NAME_LENGTH)) {
+        if ((key >= 32) && (key <= 125)) {
             playerName.push_back(static_cast<char>(key));
-            letterCount++;
         }
         key = GetCharPressed();
     }
 
     if (IsKeyPressed(KEY_BACKSPACE) && !playerName.empty()) {
         playerName.pop_back();
-        letterCount = std::max(letterCount - 1, 0);
     }
 }
 
@@ -292,12 +290,12 @@ void Game::RenderNewHighScoreScreen() const {
 
     DrawRectangleRec(textBox, LIGHTGRAY);
     DrawText(playerName.c_str(), static_cast<int>(textBox.x) + 5, static_cast<int>(textBox.y) + 8, 40, MAROON);
-    DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, MAX_NAME_LENGTH), textX, 600, 20, YELLOW);
+    DrawText("INPUT CHARS: ", textX, 600, 20, YELLOW);
 
     RenderTextBoxOutline();
     RenderBlinkingCursor();
 
-    if (letterCount > 0 && letterCount < MAX_NAME_LENGTH) {
+    if (playerName.size() > 0) {
         DrawText("PRESS ENTER TO CONTINUE", textX, 800, 40, YELLOW);
     }
 }
@@ -309,12 +307,7 @@ void Game::RenderTextBoxOutline() const {
 }
 
 void Game::RenderBlinkingCursor() const {
-    if (!mouseOnText || letterCount >= MAX_NAME_LENGTH) {
-        if (letterCount >= MAX_NAME_LENGTH) {
-            DrawText("Press BACKSPACE to delete chars...", 600, 650, 20, YELLOW);
-        }
-        return;
-    }
+   
 
     if ((framesCounter / 20) % 2 == 0) {
         const int cursorX = static_cast<int>(textBox.x) + 8 + MeasureText(playerName.c_str(), 40);
@@ -349,7 +342,7 @@ void Game::Render() const {
         break;
 
     case State::GAMEPLAY:
-        background->Render();
+        background.Render();
         DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
         DrawText(TextFormat("Lives: %i", player->GetLives()), 50, 70, 40, YELLOW);
 

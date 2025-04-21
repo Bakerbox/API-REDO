@@ -8,6 +8,7 @@
 #include "Wall.h"
 #include "Alien.h"
 #include "Projectile.h"
+#include "Background.h"
 
 //TODO: fix the physical structure. Move things into their own files. 
 // higschore, collision code, rng, etc. (pytting implementation in .hpp files is fine). 
@@ -49,7 +50,7 @@ private:
     std::mt19937 rng;
     
     std::unique_ptr<Player> player;
-    std::unique_ptr<Background> background;
+    Background background;
     std::vector<Projectile> projectiles;
     std::vector<Wall> walls;
     std::vector<Alien> aliens;

@@ -20,7 +20,7 @@ public:
     void Update() override;
     void Render(const Texture2D& texture) const override;
     
-    void Render(const Resources& resources) const;
+    void Render(const Resources& resources) const noexcept;
     
     int GetLives() const noexcept { return lives; }
     float GetPlayerBaseHeight() const noexcept { return playerBaseHeight; }
