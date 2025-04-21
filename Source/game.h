@@ -37,14 +37,14 @@ private:
     int framesCounter = 0;
     
     // Game configuration
-    
-    static constexpr int WallCount = 5;
-    static constexpr float ShootInterval = SHOOT_INTERVAL;  
-    static constexpr int FormationWidth = 8;
-    static constexpr int FormationHeight = 5;
-    static constexpr int AlienSpacing = 80;
-    static constexpr int FormationX = 100;
-    static constexpr int FormationY = 50;
+    float shootTimer = 0;
+    static constexpr int wallCount = 5;
+    static constexpr float shootInterval = SHOOT_INTERVAL;  
+    static constexpr int formationWidth = 8;
+    static constexpr int formationHeight = 5;
+    static constexpr int alienSpacing = 80;
+    static constexpr int formationX = 100;
+    static constexpr int formationY = 50;
     std::mt19937 rng;
     
     std::unique_ptr<Player> player;

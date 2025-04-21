@@ -234,7 +234,6 @@ void Game::HandleHighScoreEntry() {
     }
 }
 
-//TODO: make use of the std::string API (string::size()) and consider not having a max length. 
 void Game::HandleNameInput() {
     int key = GetCharPressed();
 
@@ -328,23 +327,23 @@ void Game::Render() const {
         DrawText(TextFormat("Score: %i", score), 50, 20, 40, YELLOW);
         DrawText(TextFormat("Lives: %i", player->GetLives()), 50, 70, 40, YELLOW);
 
-        player->Render(*resources);
+        player->Render(resources);
         
         for (const auto& projectile : projectiles) {
             if (projectile.IsActive()) {
-                projectile.Render(resources->GetLaserTexture());
+                projectile.Render(resources.GetLaserTexture());
             }
         }
         
         for (const auto& wall : walls) {
             if (wall.IsActive()) {
-                wall.Render(resources->GetBarrierTexture());
+                wall.Render(resources.GetBarrierTexture());
             }
         }
         
         for (const auto& alien : aliens) {
             if (alien.IsActive()) {
-                alien.Render(resources->GetAlienTexture());
+                alien.Render(resources.GetAlienTexture());
             }
         }
         break;
@@ -378,21 +377,10 @@ bool Game::CheckNewHighScore() const {
     return score > leaderboard.back().score;
 }
 
-//TODO: consider: 1. push_back the new value, sort the list, pop the back.
-
 void Game::InsertNewHighScore(const std::string& name) {
     PlayerData newData{name, score};
     
-    auto it = std::find_if(leaderboard.begin(), leaderboard.end(),
-                          [this](const PlayerData& data) { return score > data.score; });
-    
-    if (it != leaderboard.end()) {
-        leaderboard.insert(it, newData);
-        
-        if (leaderboard.size() > LEADERBOARD_ROWS) {
-            leaderboard.resize(LEADERBOARD_ROWS);
-        }
-    } else if (leaderboard.size() < LEADERBOARD_ROWS) {
         leaderboard.push_back(newData);
-    }
+        std::sort(leaderboard.begin(), leaderboard.end());
+        leaderboard.pop_back();
 }
