@@ -4,8 +4,6 @@
 class Projectile : public Entity {
 private:
     int speed;
-    Vector2 lineStart; //TODO: remove redundant members. You already hace position and all Projectiles are the same sized-rect, no need to encode length here.
-    Vector2 lineEnd;
     bool isPlayerProjectile;
 
 public:
@@ -16,8 +14,6 @@ public:
     void Update() override;
     void Render(const Texture2D& texture) const override;
     
-    Vector2 GetLineStart() const noexcept { return lineStart; }
-    Vector2 GetLineEnd() const noexcept { return lineEnd; }
     bool IsPlayerProjectile() const noexcept { return isPlayerProjectile; }
     
     void InverseSpeed() noexcept { speed = -speed; }
