@@ -5,7 +5,7 @@
 #include <random>
 #include <chrono>
 
-constexpr float WALL_DISTANCE = 250.0f;
+constexpr float WALL_DISTANCE = 300.0f;
 constexpr float ALIEN_DISTANCE = 450.0f;
 constexpr float PROJECTILE_DISTANCE = 130.0f;
 constexpr float SHOOT_INTERVAL = 60.0f;

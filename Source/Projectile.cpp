@@ -8,7 +8,7 @@ constexpr int PROJECTILE_SPEED = 15;
 constexpr float ALIEN_OFFSET = 40.0f;
 
 Projectile::Projectile(Vector2 pos, bool isPlayer)
-    : Entity(pos, 0.0f),
+    : Entity(pos, 1.0f,5.0f),
       speed(isPlayer ? PROJECTILE_SPEED : -PROJECTILE_SPEED),
       isPlayerProjectile(isPlayer)
 {

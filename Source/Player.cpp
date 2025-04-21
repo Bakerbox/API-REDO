@@ -2,7 +2,7 @@
 #include <raylib.h>
 
 Player::Player()
-    : Entity({static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) - 50.0f}, 50.0f),
+    : Entity({static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) - 50.0f}, 30,30),
       lives(3),
       speed(7.0f),
       frameTimer(0.0f),
@@ -19,7 +19,7 @@ void Player::Update() {
         position.x += speed;
     }
 
-    position.x = std::max(size, std::min(position.x, static_cast<float>(GetScreenWidth()) - size));
+    position.x = std::max(width, std::min(position.x, static_cast<float>(GetScreenWidth()) - width));
 
     frameTimer += 1.0f;
     if (frameTimer > 10.0f) {

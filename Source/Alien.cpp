@@ -6,7 +6,7 @@
 #include <random>
 
 Alien::Alien(Vector2 pos)
-    : Entity(pos, 30.0f),
+    : Entity(pos, 65, 40),
       speed(5.0f),
       moveTimer(0.0f),
       moveInterval(1.0f),
@@ -22,7 +22,7 @@ void Alien::Update() {
     if (moveTimer >= moveInterval) {
         position.x += speed * moveDirection;
         
-        if (position.x < size || position.x > GetScreenWidth() - size) {
+        if (position.x < width || position.x > GetScreenWidth() - width) {
             moveDirection *= -1;
             position.y += 10.0f;
         }

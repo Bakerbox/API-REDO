@@ -10,15 +10,16 @@ class Wall;
 class Entity {
 protected:
     Vector2 position;
-    float size;
+    float width;
+    float height;
     bool active = true;
 
 public:
     Rectangle GetBounds(const Entity& entity) const {
-        return  Rectangle{ entity.position.x, entity.position.y, entity.size, entity.size };
+        return  Rectangle{ entity.position.x-entity.width/2, entity.position.y, entity.width, entity.height };
     }
-    Entity() : size(0), position{0, 0} {}
-    Entity(Vector2 pos, float rad) : position(pos), size(rad) {}
+    Entity() : width(0),height(0), position{0, 0} {}
+    Entity(Vector2 pos, float w, float h) : position(pos), width(w), height(h) {}
     
     virtual ~Entity() = default;
 
@@ -28,7 +29,8 @@ public:
     Vector2 GetPosition() const { return position; }
     float GetXPosition() const { return position.x; }
     float GetYPosition() const { return position.y; }
-    float GetSize() const { return size; }
+    float GetWidth() const { return width; }
+    float GetHeight() const { return height; }
     bool IsActive() const { return active; }
     void SetActive(bool isActive) { active = isActive; }
     void SetPosition(Vector2 newPos) { position = newPos; }

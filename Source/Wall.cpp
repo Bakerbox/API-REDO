@@ -7,7 +7,7 @@
 constexpr int INITIAL_WALL_HEALTH = 3;
 
 Wall::Wall(Vector2 pos)
-    : Entity(pos, 40.0f),
+    : Entity(pos, 160,80),
       health(INITIAL_WALL_HEALTH)
 {
 }
@@ -34,9 +34,9 @@ void Wall::Render(const Texture2D& texture) const {
         { position.x, position.y, 200, 200 },
         { 100, 100 },
         0.0f,
-        WHITE);
+            WHITE);
     if (health > 0) {
-        DrawText(TextFormat("%i", health), static_cast<int>(position.x) - 10, static_cast<int>(position.y) - 10, 20, RED);
+        DrawText(TextFormat("%i", health), static_cast<int>(position.x) - 10, static_cast<int>(position.y) + 15, 20, RED);
     }
 }
 
