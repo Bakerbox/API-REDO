@@ -77,5 +77,8 @@
     <ClInclude Include="Source\Background.h">
       <Filter>Header Files\Entity and subclasses</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Entity and subclasses</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

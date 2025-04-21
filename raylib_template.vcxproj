@@ -188,6 +188,7 @@
     <ClInclude Include="Source\Resources.h" />
     <ClInclude Include="Source\TextureResource.h" />
     <ClInclude Include="Source\Walls.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

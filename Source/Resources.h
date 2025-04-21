@@ -6,7 +6,6 @@
 
 class Resources {
 private:
-    //TODO: you don't need a pointer. Just own the TextureResource
     TextureResource alienTexture;
     TextureResource barrierTexture;
     TextureResource laserTexture;

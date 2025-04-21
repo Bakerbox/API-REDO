@@ -1,13 +1,12 @@
+#include "Window.h"
 #include "game.h"
-
 constexpr int screenWidth = 1920;
 constexpr int screenHeight = 1080;
 
 int main()
 {
     try {
-        InitWindow(screenWidth, screenHeight, "SPACE INVADERS"); //TODO: make RAII / local handle
-        SetTargetFPS(60);
+       WindowRAII(screenWidth, screenHeight, "SPACE INVADERS");
         
         Game game(State::STARTSCREEN);
 
@@ -18,13 +17,9 @@ int main()
 
         }
         
-        CloseWindow();
-        
     }
     catch (const std::exception& e) {
-        TraceLog(LOG_ERROR, "Exception caught: %s", e.what());
-        
-        CloseWindow();        
+        TraceLog(LOG_ERROR, "Exception caught: %s", e.what());   
     }
     return EXIT_SUCCESS;
 }
