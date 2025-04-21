@@ -50,8 +50,6 @@ Game::Game(State initialState)
     Reset();
 }
 
-Game::~Game() = default;
-
 void Game::End() {
     projectiles.clear();
     walls.clear();
@@ -254,6 +252,7 @@ void Game::HandleHighScoreEntry() {
     }
 }
 
+//TODO: make use of the std::string API (string::size()) and consider not having a max length. 
 void Game::HandleNameInput() {
     int key = GetCharPressed();
 
@@ -281,7 +280,7 @@ void Game::SpawnEnemyProjectile() {
         Vector2 projectilePos = aliens[randomAlienIndex].GetPosition();
         Projectile newProjectile(projectilePos, false);
         newProjectile.OffsetEnemyProjectile();
-        projectiles.push_back(std::move(newProjectile));
+        projectiles.push_back(std::move(newProjectile)); //if you move, you could use emplace_back to trigger the move-constructor in place. I think this will happen implicitly, but it's nice being explicit.
     }
 }
 
@@ -400,6 +399,8 @@ bool Game::CheckNewHighScore() const {
     
     return score > leaderboard.back().score;
 }
+
+//TODO: consider: 1. push_back the new value, sort the list, pop the back.
 
 void Game::InsertNewHighScore(const std::string& name) {
     PlayerData newData{name, score};

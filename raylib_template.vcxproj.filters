@@ -39,9 +39,6 @@
     <ClCompile Include="Source\Alien.cpp">
       <Filter>Source Files\Entity and subclasses</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Star.cpp">
-      <Filter>Source Files\Entity and subclasses</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Background.cpp">
       <Filter>Source Files\Entity and subclasses</Filter>
     </ClCompile>

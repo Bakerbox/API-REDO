@@ -30,7 +30,7 @@ void Player::Update() {
 
 void Player::Render(const Texture2D& texture) const {
     const float height = static_cast<float>(GetScreenHeight());
-    DrawTexturePro(texture,
+    DrawTexturePro(texture, //TODO: consider scaling the images instead, and use DrawTexture (a much simpler interface for putting images to screen)
         { textureFrame * 352.0f, 0, 352, 352 },    
         { position.x, height - 50, 50, 50 }, 
         { 25, 25 },                                  
@@ -38,7 +38,8 @@ void Player::Render(const Texture2D& texture) const {
         WHITE);
 }
 
-void Player::Render(const Resources& resources) const {
+//TODO: consider marking the interface noexcept if you are swalling the exception anyway.
+void Player::Render(const Resources& resources)  const {
     try {
         const Texture2D& texture = resources.GetPlayerTexture(textureFrame);
         const float height = static_cast<float>(GetScreenHeight());
@@ -51,6 +52,9 @@ void Player::Render(const Resources& resources) const {
     }
     catch (const std::exception& e) {
         TraceLog(LOG_ERROR, "Failed to render player: %s", e.what());
+    }
+    catch (...) {
+        //swallow unknown exception
     }
 }
 

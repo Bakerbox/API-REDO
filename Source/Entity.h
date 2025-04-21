@@ -30,6 +30,7 @@ public:
     void SetActive(bool isActive) { active = isActive; }
     void SetPosition(Vector2 newPos) { position = newPos; }
 
+    //TODO: rect-rect is probably more suited for this game. (projectiles, walls - most things are more rectangular than circular)
     bool IsColliding(const Entity& other) const {
         return CheckCollisionCircles(position, radius, other.position, other.radius);
     }

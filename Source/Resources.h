@@ -6,6 +6,7 @@
 
 class Resources {
 private:
+    //TODO: you don't need a pointer. Just own the TextureResource
     std::unique_ptr<TextureResource> alienTexture;
     std::unique_ptr<TextureResource> barrierTexture;
     std::unique_ptr<TextureResource> laserTexture;

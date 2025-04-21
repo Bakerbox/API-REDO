@@ -9,6 +9,8 @@
 #include "Alien.h"
 #include "Projectile.h"
 
+//TODO: fix the physical structure. Move things into their own files. 
+// higschore, collision code, rng, etc. (pytting implementation in .hpp files is fine). 
 // Forward declarations
 class Background;
 
@@ -34,6 +36,7 @@ private:
     int framesCounter;
     
     // Game configuration
+    // TODO: consider making static constexpr and inline-initialize (and maybe make public / put in a config-namespace)
     int wallCount;
     float shootTimer;
     float shootInterval;
@@ -83,7 +86,7 @@ private:
 public:
     explicit Game(State initialState);
     
-    ~Game();
+    ~Game() = default;
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
     Game(Game&&) = default;
