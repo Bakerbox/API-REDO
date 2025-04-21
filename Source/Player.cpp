@@ -30,7 +30,7 @@ void Player::Update() {
 
 void Player::Render(const Texture2D& texture) const {
     const float height = static_cast<float>(GetScreenHeight());
-    DrawTexturePro(texture, //TODO: consider scaling the images instead, and use DrawTexture (a much simpler interface for putting images to screen)
+    DrawTexturePro(texture, 
         { textureFrame * 352.0f, 0, 352, 352 },    
         { position.x, height - 50, 50, 50 }, 
         { 25, 25 },                                  
