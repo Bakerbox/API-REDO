@@ -38,8 +38,8 @@ void Player::Render(const Texture2D& texture) const {
         WHITE);
 }
 
-//TODO: consider marking the interface noexcept if you are swalling the exception anyway.
-void Player::Render(const Resources& resources)  const {
+
+void Player::Render(const Resources& resources)  const noexcept {
     try {
         const Texture2D& texture = resources.GetPlayerTexture(textureFrame);
         const float height = static_cast<float>(GetScreenHeight());
@@ -54,7 +54,8 @@ void Player::Render(const Resources& resources)  const {
         TraceLog(LOG_ERROR, "Failed to render player: %s", e.what());
     }
     catch (...) {
-        //swallow unknown exception
+
+        TraceLog(LOG_ERROR, "Unknown exception during Player::Render");
     }
 }
 
