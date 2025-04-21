@@ -19,7 +19,7 @@ void Player::Update() {
         position.x += speed;
     }
 
-    position.x = std::max(radius, std::min(position.x, static_cast<float>(GetScreenWidth()) - radius));
+    position.x = std::max(size, std::min(position.x, static_cast<float>(GetScreenWidth()) - size));
 
     frameTimer += 1.0f;
     if (frameTimer > 10.0f) {

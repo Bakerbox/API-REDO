@@ -39,7 +39,7 @@ private:
     // Game configuration
     float shootTimer = 0;
     static constexpr int wallCount = 5;
-    static constexpr float shootInterval = SHOOT_INTERVAL;  
+    static constexpr float shootInterval = 60.0f;
     static constexpr int formationWidth = 8;
     static constexpr int formationHeight = 5;
     static constexpr int alienSpacing = 80;

@@ -6,7 +6,7 @@ constexpr int screenHeight = 1080;
 int main()
 {
     try {
-       WindowRAII(screenWidth, screenHeight, "SPACE INVADERS");
+       WindowRAII window(screenWidth, screenHeight, "SPACE INVADERS");
         
         Game game(State::STARTSCREEN);
 

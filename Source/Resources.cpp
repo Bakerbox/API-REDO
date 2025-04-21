@@ -1,8 +1,9 @@
 #include "Resources.h"
 #include <stdexcept>
 
-Resources::Resources() : alienTexture("./Assets/Alien.png"),
+Resources::Resources() :
 barrierTexture("./Assets/Barrier.png"),
+alienTexture("./Assets/Alien.png"),
 laserTexture("./Assets/Laser.png")
 {
     try {

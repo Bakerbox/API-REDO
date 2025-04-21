@@ -22,7 +22,7 @@ void Alien::Update() {
     if (moveTimer >= moveInterval) {
         position.x += speed * moveDirection;
         
-        if (position.x < radius || position.x > GetScreenWidth() - radius) {
+        if (position.x < size || position.x > GetScreenWidth() - size) {
             moveDirection *= -1;
             position.y += 10.0f;
         }

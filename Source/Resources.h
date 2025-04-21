@@ -6,8 +6,8 @@
 
 class Resources {
 private:
-    TextureResource alienTexture;
     TextureResource barrierTexture;
+    TextureResource alienTexture;
     TextureResource laserTexture;
     std::vector<TextureResource> shipTextures;
 

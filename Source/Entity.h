@@ -10,12 +10,15 @@ class Wall;
 class Entity {
 protected:
     Vector2 position;
-    float radius;
+    float size;
     bool active = true;
 
 public:
-    Entity() : radius(0), position{0, 0} {}
-    Entity(Vector2 pos, float rad) : position(pos), radius(rad) {}
+    Rectangle GetBounds(const Entity& entity) const {
+        return  Rectangle{ entity.position.x, entity.position.y, entity.size, entity.size };
+    }
+    Entity() : size(0), position{0, 0} {}
+    Entity(Vector2 pos, float rad) : position(pos), size(rad) {}
     
     virtual ~Entity() = default;
 
@@ -25,14 +28,14 @@ public:
     Vector2 GetPosition() const { return position; }
     float GetXPosition() const { return position.x; }
     float GetYPosition() const { return position.y; }
-    float GetRadius() const { return radius; }
+    float GetSize() const { return size; }
     bool IsActive() const { return active; }
     void SetActive(bool isActive) { active = isActive; }
     void SetPosition(Vector2 newPos) { position = newPos; }
 
     //TODO: rect-rect is probably more suited for this game. (projectiles, walls - most things are more rectangular than circular)
     bool IsColliding(const Entity& other) const {
-        return CheckCollisionCircles(position, radius, other.position, other.radius);
+        return CheckCollisionRecs(GetBounds(*this), GetBounds(other));
     }
     
     virtual bool CollideWith(const Entity& other) const = 0;
