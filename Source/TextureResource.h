@@ -16,6 +16,7 @@ public:
         }
     }
 
+
     ~TextureResource() noexcept {
         if (texture.id != 0) {
             UnloadTexture(texture);
