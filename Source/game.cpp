@@ -14,24 +14,6 @@ constexpr int LEADERBOARD_ROWS = 5;
 
 Game::Game(State initialState)
     : gameState(initialState),
-      score(0),
-      newHighScore(false),
-      playerName(""),
-      letterCount(0),
-      framesCounter(0),
-      wallCount(5),
-      shootTimer(0),
-      shootInterval(SHOOT_INTERVAL),
-      formationWidth(8),
-      formationHeight(5),
-      alienSpacing(80),
-      formationX(100),
-      formationY(50),
-      mouseOnText(false),
-      cornerPos{0, 0},
-      offset(0),
-      textBox{600, 500, 225, 50},
-      resources(std::make_unique<Resources>()),
       background(600)
 {
     unsigned seed = static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());

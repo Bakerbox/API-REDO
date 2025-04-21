@@ -30,23 +30,21 @@ class Game {
 private:
     // Game state
     State gameState;
-    int score;
-    bool newHighScore;
+    int score = 0;
+    bool newHighScore = false;
     std::string playerName;
-    int letterCount;
-    int framesCounter;
+    int letterCount = 0;
+    int framesCounter = 0;
     
     // Game configuration
-    // TODO: consider making static constexpr and inline-initialize (and maybe make public / put in a config-namespace)
-    int wallCount;
-    float shootTimer;
-    float shootInterval;
-    int formationWidth;
-    int formationHeight;
-    int alienSpacing;
-    int formationX;
-    int formationY;
     
+    static constexpr int WallCount = 5;
+    static constexpr float ShootInterval = SHOOT_INTERVAL;  
+    static constexpr int FormationWidth = 8;
+    static constexpr int FormationHeight = 5;
+    static constexpr int AlienSpacing = 80;
+    static constexpr int FormationX = 100;
+    static constexpr int FormationY = 50;
     std::mt19937 rng;
     
     std::unique_ptr<Player> player;
@@ -56,12 +54,12 @@ private:
     std::vector<Alien> aliens;
     std::vector<PlayerData> leaderboard;
     
-    bool mouseOnText;
-    Vector2 cornerPos;
-    float offset;
-    Rectangle textBox;
+    bool mouseOnText = false;
+    Vector2 cornerPos = { 0, 0 };
+    float offset = 0;
+    Rectangle textBox = { 600, 500, 225, 50 };
     
-    std::unique_ptr<Resources> resources;
+    Resources resources;
     
     void HandleGameplay();
     void HandlePlayerInput();
