@@ -9,10 +9,7 @@
 #include "Alien.h"
 #include "Projectile.h"
 #include "Background.h"
-
-//TODO: fix the physical structure. Move things into their own files. 
-// higschore, collision code, rng, etc. (pytting implementation in .hpp files is fine). 
-// Forward declarations
+#include "Highscore.h"
 class Background;
 
 enum class State {
@@ -21,20 +18,13 @@ enum class State {
     ENDSCREEN
 };
 
-struct PlayerData {
-    std::string name;
-    int score;
-};
+
 
 class Game {
 private:
     // Game state
     State gameState;
-    int score = 0;
-    bool newHighScore = false;
-    std::string playerName;
-    int letterCount = 0;
-    int framesCounter = 0;
+
     
     // Game configuration
     float shootTimer = 0;
@@ -52,14 +42,15 @@ private:
     std::vector<Projectile> projectiles;
     std::vector<Wall> walls;
     std::vector<Alien> aliens;
-    std::vector<PlayerData> leaderboard;
+
     
-    bool mouseOnText = false;
+
     Vector2 cornerPos = { 0, 0 };
     float offset = 0;
-    Rectangle textBox = { 600, 500, 225, 50 };
+
     
     Resources resources;
+    Highscore highscore;
     
     void HandleGameplay();
     void HandlePlayerInput();
@@ -73,14 +64,7 @@ private:
     void SpawnPlayerProjectile();
     void CleanupInactiveEntities();
     void ShowEndScreen();
-    void HandleHighScoreEntry();
-    void HandleNameInput();
-    void RenderNewHighScoreScreen() const;
-    void RenderTextBoxOutline() const;
-    void RenderBlinkingCursor() const;
-    void RenderLeaderboardScreen() const;
-    bool CheckNewHighScore() const;
-    void InsertNewHighScore(const std::string& name);
+
 
 public:
     explicit Game(State initialState);

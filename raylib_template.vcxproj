@@ -182,6 +182,7 @@
     <ClInclude Include="Source\Background.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\Highscore.h" />
     <ClInclude Include="Source\MathTools.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Projectile.h" />

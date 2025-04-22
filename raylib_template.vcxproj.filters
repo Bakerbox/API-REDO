@@ -80,5 +80,8 @@
     <ClInclude Include="Window.h">
       <Filter>Header Files\Entity and subclasses</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Highscore.h">
+      <Filter>Header Files\Entity and subclasses</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
