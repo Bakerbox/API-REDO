@@ -2,10 +2,6 @@
 
 # Modern C++ Code Refactoring Presentation
 
-## Slide 1: Introduction
-- Project: Space Invaders Game Refactoring
-- Goal: Improve code quality without changing functionality
-- Focus: Modern C++ practices, clean code, proper resource management
 
 ## Slide 2: Issue - Incorrect RAII Implementation
 - **Problem**: Resources not properly managed with RAII principles
@@ -192,44 +188,8 @@ Player()
 ```
 - **Citation**: "Use member initializers instead of assignment" - C++ Core Guidelines C.49, "Initialize members in the order of member declaration" - C++ Core Guidelines C.48
 
-## Slide 11: Issue - Resource Ownership
-- **Problem**: Game is dependent on Window but doesn't own it
-- **Better Approach**: Clear ownership and lifecycle management
-- **Code Example**:
-```cpp
-// Before
-// Game depends on Window but doesn't own it
-// BeginDrawing/EndDrawing called outside Game class
-
-// After
-// Main function handles window lifecycle and drawing
-try {
-    InitWindow(screenWidth, screenHeight, "SPACE INVADERS");
-    SetTargetFPS(60);
-    
-    Game game(State::STARTSCREEN);
-
-    while (!WindowShouldClose()) {
-        game.Update();
-        
-        BeginDrawing();
-        ClearBackground(BLACK);
-        game.Render();
-        EndDrawing();
-    }
-    
-    CloseWindow();
-    return 0;
-} catch (const std::exception& e) {
-    // Handle any exceptions that might be thrown
-    TraceLog(LOG_ERROR, "Exception caught: %s", e.what());
-    CloseWindow();
-    return 1;
-}
-```
-- **Citation**: "Make ownership explicit" - C++ Core Guidelines R.3, "Express intent" - C++ Core Guidelines P.1
-
 ## Slide 12: Summary of Improvements
+
 - Implemented proper RAII throughout the codebase
 - Replaced EntityType enum with C++ polymorphism
 - Fixed exception handling and specifications
